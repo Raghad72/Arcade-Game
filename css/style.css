@@ -1,0 +1,48 @@
+body {
+    text-align: center;
+}
+
+/*
+ * Styles for the popup window
+ */
+ 
+.popup {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    border-radius: 10px;
+    width: 300px;
+    height: 180px;
+    top : 20%;
+    left: 50%;
+    background-color: #ffffff;
+    align-items: center;
+    border: 5px dashed rgb(214, 10, 10);
+}
+
+.check {
+    font-size: 50px;
+    color: rgb(0, 163, 0);
+    text-align: center;
+}
+
+.congratz { 
+    text-align: center;
+    font-family: 'Coda', cursive;
+    margin-top: 10px;
+}
+
+.replay {
+    cursor: pointer;  
+    margin-top: 10px; 
+    border-radius: 5px;
+    padding: 5px 5px;
+    color: white;
+    background-color: rgb(51, 167, 51);
+    border: none;
+    font-size: 12px;
+}
+
+.hide {
+    display: none;
+}
+
