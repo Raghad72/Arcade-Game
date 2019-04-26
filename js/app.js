@@ -1,27 +1,30 @@
 // Enemies our player must avoid
-var Enemy = function(x,y, speed) {
-    this.x = x;
-    this.y = y + 55;
-    this.speed = speed;
-    this.sprite = 'images/enemy-bug.png';
-};
-
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    this.x += this.speed * dt;
-    if (this.x > 505) {
-        this.x = -101;
+class Enemy {
+    constructor(x, y, speed) {
+        this.x = x;
+        this.y = y + 55;
+        this.speed = speed;
+        this.sprite = 'images/enemy-bug.png';
     }
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+    
+    // Update the enemy's position, required method for game
+    // Parameter: dt, a time delta between ticks
+    update(dt) {
+        this.x += this.speed * dt;
+        if (this.x > 505) {
+            this.x = -101;
+        }
+        // You should multiply any movement by the dt parameter
+        // which will ensure the game runs at the same speed for
+        // all computers.
+    };
+
+    // Draw the enemy on the screen, required method for game
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
 };
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -41,7 +44,7 @@ class Player {
             }
         }
         // check if player reach the river and show modal box
-        if(this.y === 55) {
+        if(this.y === -11) {
             const popup = document.querySelector('.popup');
             popup.classList.remove('hide');
             allEnemies = [];
@@ -55,7 +58,7 @@ class Player {
     // to reset the player position
     reset() {
         this.x = 202;
-        this.y = 387;
+        this.y = 404;
     }
 
     // update player position based on the user input
@@ -67,7 +70,7 @@ class Player {
                 }
                 break;
             case 'up':
-                if (this.y > 83) {
+                if (this.y > 10) {
                     this.y -= 83;
                 }
                 break;
@@ -86,7 +89,7 @@ class Player {
 }
 
 // creating player opject and set it to the middle bottom of the canvas
-let player = new Player(202, 387);
+let player = new Player(202, 404);
 
 // creating enemies objects and set them position and speed
 let enemy1 = new Enemy((-101 * 4), 0, 300);
@@ -100,8 +103,8 @@ let allEnemies = [];
 allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5);
 
 // This listens for key presses and sends the keys to the Player.handleInput() method.
-document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+document.addEventListener('keyup', (e)  => {
+    const allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
